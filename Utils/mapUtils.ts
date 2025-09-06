@@ -6,13 +6,12 @@
 //   }, []);
 // };
 
-// export const loadGoogleMaps = () => {
-//   const script = document.createElement("script");
-//   script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap`;
-//   script.async = true;
-//   script.defer = true;
-//   document.head.appendChild(script);
-// };
+export const loadGoogleMaps = () => {
+  const script = document.createElement("script");
+  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDH_UCJbrqeoq9AqEf7RuCvU-XgRYF-Ev8&callback=initMap`;
+  script.async = true;
+  document.body.appendChild(script);
+};
 
 // export const initMap = () => {
 //   const map = new window.google.maps.Map(

@@ -19,9 +19,7 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
   const updateQuantity = (id: number, quantity: number) => {
     setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity } : item
-      )
+      prevItems.map((item) => (item.id === id ? { ...item, quantity } : item))
     );
   };
 
@@ -29,8 +27,25 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
+  const addToCart = (product: CartItem) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.id === product.id);
+      if (existingItem) {
+        return prevItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + product.quantity }
+            : item
+        );
+      } else {
+        return [...prevItems, product];
+      }
+    });
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, updateQuantity, removeItem }}>
+    <CartContext.Provider
+      value={{ cartItems, updateQuantity, removeItem, addToCart }}
+    >
       {children}
     </CartContext.Provider>
   );
